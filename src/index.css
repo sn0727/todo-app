@@ -11,13 +11,20 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-.todo-app-list .container {
-  width: 500px;
-  margin: auto;
+
+.todo-app-list {
+  width: 1200px;
+  margin: 50px auto;
   max-width: 100%;
-  padding: 15px;
+  padding: 15px 15px;
   border: 1px solid #dee2e6;
 }
+
 .todo-app-list .container .text-center {
   text-align: center;
+}
+
+.todo-app-list .row-cs.changes {
+  height: 400px;
+  overflow: auto;
 }

@@ -2,10 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import Table from 'react-bootstrap/Table';
 
-function ContainerExample({saveFun}) {
+function ContainerExample({ saveFun }) {
   const [inputFeild, setInputFeild] = useState({
     id: Math.random().toFixed(2),
     itemName: "",
+    amount: "",
+    installment: "",
     date: ""
   })
 
@@ -31,17 +33,38 @@ function ContainerExample({saveFun}) {
     <>
       <Form>
         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-          <Form.Label>Enter todo here</Form.Label>
+          <Form.Label>Enter Name</Form.Label>
           <Form.Control type="email"
             name='itemName'
             onChange={inputHandler}
-            placeholder="Enter todo here" />
+            placeholder="Enter Name"
+            required
+          />
+        </Form.Group>
+        <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+          <Form.Label>Enter Amount</Form.Label>
+          <Form.Control type="text"
+            name='amount'
+            onChange={inputHandler}
+            placeholder="Enter Amount"
+            required="required"
+          />
+        </Form.Group>
+        <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+          <Form.Label>Enter Installment</Form.Label>
+          <Form.Control type="text"
+            name='installment'
+            onChange={inputHandler}
+            placeholder="Enter Installment no"
+            required
+          />
         </Form.Group>
         <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
           <Form.Label>Select date here</Form.Label>
           <Form.Control type="date"
             name='date'
             onChange={inputHandler}
+            required
           />
         </Form.Group>
         <Button variant="success" onClick={() => saveData()}>Add</Button>
@@ -51,7 +74,7 @@ function ContainerExample({saveFun}) {
 }
 
 // table list data,
-function TableList({sendFun}) {
+function TableList({ sendFun }) {
   // const [data, setData] = useState([])
 
   // function fetchFun() {
@@ -99,7 +122,9 @@ function TableList({sendFun}) {
       <thead>
         <tr>
           <th>id</th>
-          <th>Item Name</th>
+          <th>Sender Name</th>
+          <th>Installment</th>
+          <th>Amount</th>
           <th>Date</th>
           <th>Action</th>
         </tr>
@@ -110,6 +135,8 @@ function TableList({sendFun}) {
             <tr key={index}>
               <td>{items?.id}</td>
               <td>{items?.itemName}</td>
+              <td>{items?.installment}</td>
+              <td>&#8377;{items?.amount}</td>
               <td>{items?.date}</td>
               <td>
                 <Button variant="danger"
@@ -130,15 +157,19 @@ const Home = () => {
   return (
     <div className='todo-app-list'>
       <div className='container'>
-        <div className='row-cs'>
-          <h1 className='text-center'>Todo App</h1>
-          <ContainerExample />
-        </div>
-      </div>
-      <div className='container mt-4'>
-        <div className='row-cs'>
-          <h1 className='text-center mb-3'>Items table</h1>
-          <TableList />
+        <div className='row'>
+          <div className="col-6">
+            <div className='row-cs'>
+              <h1 className='text-center'>Todo App</h1>
+              <ContainerExample />
+            </div>
+          </div>
+          <div className="col-6">
+            <div className='row-cs changes'>
+              <h1 className='text-center mb-3'>Installment Table</h1>
+              <TableList />
+            </div>
+          </div>
         </div>
       </div>
     </div>
